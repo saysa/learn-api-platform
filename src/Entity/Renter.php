@@ -5,11 +5,12 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\RenterRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     collectionOperations={"get"},
- *     itemOperations={"get"}
+ *     normalizationContext={"groups"={"renter:read"}},
+ *     denormalizationContext={"groups"={"renter:write"}}
  * )
  * @ORM\Entity(repositoryClass=RenterRepository::class)
  */
@@ -24,11 +25,13 @@ class Renter
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"renter:read", "renter:write"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"renter:write"})
      */
     private $firstname;
 
