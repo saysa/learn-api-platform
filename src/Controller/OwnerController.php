@@ -20,18 +20,6 @@ class OwnerController extends AbstractController
 
         $output = $serializer->serialize([$owner, $saysa], 'json');
 
-        // dd($output);
-
-        $json = '[{"name":"Doe","firstname":"John","job":"Developer"},{"name":"Bounkhong","firstname":"Saysa","job":"Trainer"}]';
-
-        //$json = '{"name":"Doe","firstname":"John","job":"Developer"}';
-
-        $objects = $serializer->deserialize($json, Owner::class.'[]', 'json');
-
-        dd($objects);
-
-        return $this->render('owner/index.html.twig', [
-            'controller_name' => 'OwnerController',
-        ]);
+        return new Response($output);
     }
 }
