@@ -3,9 +3,10 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Annotation\ApiResource;
+use App\Filter\NotNameFilter;
 use App\Repository\RenterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -30,6 +31,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ApiFilter(ExistsFilter::class, properties={"home"})
  * @ApiFilter(SearchFilter::class, properties={"home.place":"partial"})
+ * @ApiFilter(NotNameFilter::class, properties={"not_name"})
  * @ORM\Entity(repositoryClass=RenterRepository::class)
  */
 class Renter
