@@ -29,7 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     }
  * )
  * @ApiFilter(ExistsFilter::class, properties={"home"})
- * @ApiFilter(SearchFilter::class, properties={"home.place"})
+ * @ApiFilter(SearchFilter::class, properties={"home.place":"partial"})
  * @ORM\Entity(repositoryClass=RenterRepository::class)
  */
 class Renter
