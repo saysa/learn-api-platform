@@ -134,7 +134,11 @@ class Renter
         return $this;
     }
 
-    public function resetHome()
+    /**
+     * @Groups({"renter:list"})
+     */
+    public function getTotalHomes()
     {
+        return count($this->home);
     }
 }
