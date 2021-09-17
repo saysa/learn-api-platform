@@ -39,7 +39,7 @@ class Renter
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"renter:write", "renter:update"})
+     * @Groups({"renter:write", "renter:update", "role:admin"})
      */
     private $firstname;
 
