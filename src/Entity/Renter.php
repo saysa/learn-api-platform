@@ -48,7 +48,7 @@ class Renter
     private $firstname;
 
     /**
-     * @ORM\OneToMany(targetEntity=Home::class, mappedBy="renter")
+     * @ORM\OneToMany(targetEntity=Home::class, mappedBy="renter", cascade={"persist", "remove"})
      * @Groups({"renter:list", "renter:read"})
      */
     private $home;
