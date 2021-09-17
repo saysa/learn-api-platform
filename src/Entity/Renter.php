@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\RenterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -28,6 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     }
  * )
  * @ApiFilter(ExistsFilter::class, properties={"home"})
+ * @ApiFilter(SearchFilter::class, properties={"home.place"})
  * @ORM\Entity(repositoryClass=RenterRepository::class)
  */
 class Renter
