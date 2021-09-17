@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_ADMIN')"},
  *     normalizationContext={"groups"={"renter:list"}},
  *     denormalizationContext={"groups"={"renter:write"}},
  *     itemOperations={
