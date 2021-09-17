@@ -1,0 +1,31 @@
+App\Entity\Home:
+  home{1..3}:
+    title: "<word()>"
+    surface: "<randomFloat()>"
+    place: "<city()>"
+    price: "<numberBetween(1, 200)>"
+    equipments: ["spa", "piscine"]
+    renter: "@renter1"
+
+  home{4..7}:
+    title: "<word()>"
+    surface: "<randomFloat()>"
+    place: "<city()>"
+    price: "<numberBetween(1, 200)>"
+    equipments: ["wifi"]
+    renter: "@renter2"
+
+  home{8..10}:
+    title: "<word()>"
+    surface: "<randomFloat()>"
+    place: "<city()>"
+    price: "<numberBetween(1, 200)>"
+    equipments: [ "tv" ]
+    renter: "@renter3"
+
+  home{11..18}:
+    title: "<word()>"
+    surface: "<randomFloat()>"
+    place: "<city()>"
+    price: "<numberBetween(1, 200)>"
+    renter: "@renter4"

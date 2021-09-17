@@ -1,0 +1,4 @@
+App\Entity\Renter:
+  renter{1..20}:
+    firstname: "<firstName()>"
+    name: "<lastName()>"
