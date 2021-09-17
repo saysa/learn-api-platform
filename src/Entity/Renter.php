@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\RenterRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -14,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     itemOperations={
  *          "get",
  *          "put"={
- *              "normalization_context"={"groups"={"renter:read", "renter:update"}},
+ *              "normalization_context"={"groups"={"renter:read"}},
  *              "denormalization_context"={"groups"={"renter:update"}}
  *          },
  *          "delete"
@@ -33,15 +35,25 @@ class Renter
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"renter:read", "renter:write", "renter:update"})
+     * @Groups({"renter:write", "renter:update"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"renter:write", "renter:update", "role:admin", "renter:editable"})
+     * @Groups({"renter:read", "renter:admin", "renter:editable"})
      */
     private $firstname;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Home::class, mappedBy="renter")
+     */
+    private $home;
+
+    public function __construct()
+    {
+        $this->home = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -68,6 +80,36 @@ class Renter
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Home[]
+     */
+    public function getHome(): Collection
+    {
+        return $this->home;
+    }
+
+    public function addHome(Home $home): self
+    {
+        if (!$this->home->contains($home)) {
+            $this->home[] = $home;
+            $home->setRenter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHome(Home $home): self
+    {
+        if ($this->home->removeElement($home)) {
+            // set the owning side to null (unless already changed)
+            if ($home->getRenter() === $this) {
+                $home->setRenter(null);
+            }
+        }
 
         return $this;
     }
