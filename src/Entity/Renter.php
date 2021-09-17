@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
@@ -38,18 +39,21 @@ class Renter
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"renter:list", "renter:write", "renter:update"})
+     * @Assert\NotBlank()
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"renter:list", "renter:read", "renter:admin", "renter:editable"})
+     * @Assert\NotBlank()
      */
     private $firstname;
 
     /**
      * @ORM\OneToMany(targetEntity=Home::class, mappedBy="renter", cascade={"persist", "remove"})
      * @Groups({"renter:list", "renter:read"})
+     * @Assert\Valid()
      */
     private $home;
 

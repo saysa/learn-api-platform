@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\HomeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource()
@@ -23,6 +24,7 @@ class Home
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"renter:list", "renter:read"})
+     * @Assert\NotBlank()
      */
     private $title;
 
