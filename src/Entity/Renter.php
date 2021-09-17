@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\RenterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -25,6 +27,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "delete"
  *     }
  * )
+ * @ApiFilter(ExistsFilter::class, properties={"home"})
  * @ORM\Entity(repositoryClass=RenterRepository::class)
  */
 class Renter
