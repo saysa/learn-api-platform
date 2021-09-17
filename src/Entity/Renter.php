@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use App\Controller\ResetHomeController;
 use App\Filter\NotNameFilter;
 use App\Repository\RenterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,6 +20,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     normalizationContext={"groups"={"renter:list"}},
  *     denormalizationContext={"groups"={"renter:write"}},
  *     itemOperations={
+ *          "reset_home"={
+ *              "method"="DELETE",
+ *              "path"="/renters/{id}/reset_home",
+ *              "controller"=ResetHomeController::class
+ *          },
  *          "get"={
  *              "normalization_context"={"groups"={"renter:read"}}
  *          },
@@ -126,5 +132,9 @@ class Renter
         }
 
         return $this;
+    }
+
+    public function resetHome()
+    {
     }
 }
