@@ -22,7 +22,7 @@ class Home
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"renter:read"})
+     * @Groups({"renter:list", "renter:read"})
      */
     private $title;
 

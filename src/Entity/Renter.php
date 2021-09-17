@@ -11,10 +11,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     normalizationContext={"groups"={"renter:read"}},
+ *     normalizationContext={"groups"={"renter:list"}},
  *     denormalizationContext={"groups"={"renter:write"}},
  *     itemOperations={
- *          "get",
+ *          "get"={
+ *              "normalization_context"={"groups"={"renter:read"}}
+ *          },
  *          "put"={
  *              "normalization_context"={"groups"={"renter:read"}},
  *              "denormalization_context"={"groups"={"renter:update"}}
@@ -35,19 +37,19 @@ class Renter
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"renter:write", "renter:update"})
+     * @Groups({"renter:list", "renter:write", "renter:update"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"renter:read", "renter:admin", "renter:editable"})
+     * @Groups({"renter:list", "renter:read", "renter:admin", "renter:editable"})
      */
     private $firstname;
 
     /**
      * @ORM\OneToMany(targetEntity=Home::class, mappedBy="renter")
-     * @Groups({"renter:read"})
+     * @Groups({"renter:list", "renter:read"})
      */
     private $home;
 
