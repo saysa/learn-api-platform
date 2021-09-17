@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\HomeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -21,26 +22,31 @@ class Home
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"renter:read"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"renter:read"})
      */
     private $surface;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"renter:read"})
      */
     private $place;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"renter:read"})
      */
     private $price;
 
     /**
      * @ORM\Column(type="array", nullable=true)
+     * @Groups({"renter:read"})
      */
     private $equipments = [];
 

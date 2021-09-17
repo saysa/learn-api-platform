@@ -47,6 +47,7 @@ class Renter
 
     /**
      * @ORM\OneToMany(targetEntity=Home::class, mappedBy="renter")
+     * @Groups({"renter:read"})
      */
     private $home;
 
