@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CheeseListingRepository;
+use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -102,6 +103,11 @@ class CheeseListing
     public function getCreateAt(): ?\DateTimeInterface
     {
         return $this->createAt;
+    }
+
+    public function getCreateAtAgo(): string
+    {
+        return Carbon::instance($this->getCreateAt())->diffForHumans();
     }
 
     public function getIsPublished(): ?bool
