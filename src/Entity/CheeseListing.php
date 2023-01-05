@@ -52,6 +52,12 @@ class CheeseListing
      */
     private $isPublished;
 
+    public function __construct()
+    {
+        $this->createAt = new \DateTimeImmutable();
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -96,13 +102,6 @@ class CheeseListing
     public function getCreateAt(): ?\DateTimeInterface
     {
         return $this->createAt;
-    }
-
-    public function setCreateAt(\DateTimeInterface $createAt): self
-    {
-        $this->createAt = $createAt;
-
-        return $this;
     }
 
     public function getIsPublished(): ?bool
