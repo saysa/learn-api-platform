@@ -24,7 +24,10 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  *     },
  *     normalizationContext={"groups"={"cheesing_listing:read"}},
  *     denormalizationContext={"groups"={"cheesing_listing:write"}},
- *     shortName="cheeses"
+ *     shortName="cheeses",
+ *     attributes={
+ *         "pagination_items_per_page"=1
+ *     }
  * )
  * @ORM\Entity(repositoryClass=CheeseListingRepository::class)
  * @ApiFilter(BooleanFilter::class, properties={"isPublished"})
