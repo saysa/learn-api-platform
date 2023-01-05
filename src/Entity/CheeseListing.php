@@ -26,7 +26,8 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  *     denormalizationContext={"groups"={"cheesing_listing:write"}},
  *     shortName="cheeses",
  *     attributes={
- *         "pagination_items_per_page"=1
+ *         "pagination_items_per_page"=1,
+ *         "formats"={"jsonld", "json", "html", "jsonhal", "csv"={"text/csv"}}
  *     }
  * )
  * @ORM\Entity(repositoryClass=CheeseListingRepository::class)
