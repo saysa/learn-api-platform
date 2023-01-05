@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\CheeseListingRepository;
 use Carbon\Carbon;
@@ -27,6 +28,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  * @ORM\Entity(repositoryClass=CheeseListingRepository::class)
  * @ApiFilter(BooleanFilter::class, properties={"isPublished"})
  * @ApiFilter(SearchFilter::class, properties={"title": "partial", "description": "partial"})
+ * @ApiFilter(RangeFilter::class, properties={"price"})
  */
 class CheeseListing
 {
