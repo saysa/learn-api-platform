@@ -64,7 +64,6 @@ class CheeseListing
         $this->createAt = new \DateTimeImmutable();
     }
 
-
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +86,20 @@ class CheeseListing
         return $this->description;
     }
 
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * With documentation.
+     *
+     * @Groups({"cheesing_listing:write"})
+     *
+     * @return $this
+     */
     public function setTextDescription(string $description): self
     {
         $this->description = nl2br($description);
@@ -111,6 +124,11 @@ class CheeseListing
         return $this->createAt;
     }
 
+    /**
+     * How much time ago?
+     *
+     * @Groups({"cheesing_listing:read"})
+     */
     public function getCreateAtAgo(): string
     {
         return Carbon::instance($this->getCreateAt())->diffForHumans();
