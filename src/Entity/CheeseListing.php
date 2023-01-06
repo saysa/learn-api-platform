@@ -76,6 +76,7 @@ class CheeseListing
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="cheeseListings")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"cheesing_listing:read", "cheesing_listing:write"})
      */
     private $owner;
 
