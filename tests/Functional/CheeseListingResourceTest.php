@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Functional;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
+use App\Entity\CheeseListing;
 use App\Entity\User;
 use App\Test\CustomApiTestCase;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,5 +28,35 @@ class CheeseListingResourceTest extends CustomApiTestCase
             'json' => [],
         ]);
         $this->assertResponseStatusCodeSame(422);
+    }
+
+    public function testUpdateCheeseListing()
+    {
+        $client = self::createClient();
+        $user1 = $this->createdUser('user1@example.de', 'saysa');
+        $user2 = $this->createdUser('user2@example.de', 'saysa');
+
+        $cheeseListing = new CheeseListing('the super cheese');
+        $cheeseListing->setOwner($user1);
+        $cheeseListing->setPrice(1000);
+        $cheeseListing->setDescription('mmmm');
+
+        $em = $this->getEntityManager();
+        $em->persist($cheeseListing);
+        $em->flush();
+
+        $this->logIn($client, 'user2@example.de', 'saysa');
+        $client->request('PUT', '/api/cheeses/'.$cheeseListing->getId(), [
+            'json' => ['title' => 'updated'],
+        ]);
+
+        $this->assertResponseStatusCodeSame(403);
+
+        $this->logIn($client, 'user1@example.de', 'saysa');
+        $client->request('PUT', '/api/cheeses/'.$cheeseListing->getId(), [
+            'json' => ['title' => 'updated'],
+        ]);
+
+        $this->assertResponseStatusCodeSame(200);
     }
 }

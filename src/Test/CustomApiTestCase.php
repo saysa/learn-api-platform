@@ -50,4 +50,9 @@ class CustomApiTestCase extends ApiTestCase
 
         return $user;
     }
+
+    protected function getEntityManager(): EntityManagerInterface
+    {
+        return self::$container->get(EntityManagerInterface::class);
+    }
 }
