@@ -73,6 +73,12 @@ class CheeseListing
      */
     private $isPublished = false;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="cheeseListings")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $owner;
+
     public function __construct(string $title = null)
     {
         $this->createAt = new \DateTimeImmutable();
@@ -165,6 +171,18 @@ class CheeseListing
     public function setIsPublished(bool $isPublished): self
     {
         $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }
