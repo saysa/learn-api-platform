@@ -50,7 +50,7 @@ class CheeseListing
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"cheesing_listing:read", "cheesing_listing:write", "user:read"})
+     * @Groups({"cheesing_listing:read", "cheesing_listing:write", "user:read", "user:write"})
      */
     private $title;
 
@@ -62,7 +62,7 @@ class CheeseListing
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"cheesing_listing:read", "cheesing_listing:write", "user:read"})
+     * @Groups({"cheesing_listing:read", "cheesing_listing:write", "user:read", "user:write"})
      */
     private $price;
 
@@ -129,7 +129,7 @@ class CheeseListing
     /**
      * With documentation.
      *
-     * @Groups({"cheesing_listing:write"})
+     * @Groups({"cheesing_listing:write", "user:write"})
      * @SerializedName("description")
      *
      * @return $this
