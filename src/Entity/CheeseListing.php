@@ -17,12 +17,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
- *     collectionOperations={"get", "post"},
+ *     collectionOperations={
+ *         "get",
+ *         "post"={"security"="is_granted('ROLE_USER')"}
+ *     },
  *     itemOperations={
  *         "get"={
  *             "normalization_context"={"groups"={"cheesing_listing:read", "cheesing_listing:item:get"}}
  *         },
- *         "put",
+ *         "put"={"security"="is_granted('ROLE_USER')"},
+ *         "delete"={"security"="is_granted('ROLE_ADMIN')"},
  *         "patch"
  *     },
  *     normalizationContext={"groups"={"cheesing_listing:read"}},
