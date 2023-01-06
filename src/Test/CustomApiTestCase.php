@@ -8,6 +8,7 @@ use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CustomApiTestCase extends ApiTestCase
 {
@@ -16,7 +17,11 @@ class CustomApiTestCase extends ApiTestCase
         $user = new User();
         $user->setEmail($email);
         $user->setUsername(substr($email, 0, strpos($email, '@')));
-        $user->setPassword($password);
+
+        $encoded = self::$container->get(UserPasswordEncoderInterface::class)
+        ->encodePassword($user, $password);
+
+        $user->setPassword($encoded);
 
         $em = self::$container->get(EntityManagerInterface::class);
         $em->persist($user);
