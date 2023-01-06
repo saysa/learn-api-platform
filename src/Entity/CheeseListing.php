@@ -47,7 +47,7 @@ class CheeseListing
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"cheesing_listing:read", "cheesing_listing:write"})
+     * @Groups({"cheesing_listing:read", "cheesing_listing:write", "user:read"})
      */
     private $title;
 
@@ -59,7 +59,7 @@ class CheeseListing
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"cheesing_listing:read", "cheesing_listing:write"})
+     * @Groups({"cheesing_listing:read", "cheesing_listing:write", "user:read"})
      */
     private $price;
 
