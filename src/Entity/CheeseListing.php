@@ -60,18 +60,21 @@ class CheeseListing
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"cheesing_listing:read", "cheesing_listing:write", "user:read", "user:write"})
+     * @Assert\NotBlank()
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"cheesing_listing:read"})
+     * @Assert\NotBlank()
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups({"cheesing_listing:read", "cheesing_listing:write", "user:read", "user:write"})
+     * @Assert\NotBlank()
      */
     private $price;
 
