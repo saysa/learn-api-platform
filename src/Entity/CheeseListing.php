@@ -18,7 +18,9 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  * @ApiResource(
  *     collectionOperations={"get", "post"},
  *     itemOperations={
- *         "get",
+ *         "get"={
+ *             "normalization_context"={"groups"={"cheesing_listing:read", "cheesing_listing:item:get"}}
+ *         },
  *         "put",
  *         "patch"
  *     },
