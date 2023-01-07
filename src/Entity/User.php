@@ -58,7 +58,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"user:write"})
+     * @Groups({"admin:write"})
      */
     private $roles = [];
 
@@ -92,7 +92,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"admin:read", "user:write"})
      */
     private $phoneNumber;
 
