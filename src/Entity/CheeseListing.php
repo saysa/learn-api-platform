@@ -32,8 +32,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *         "delete"={"security"="is_granted('ROLE_ADMIN')"},
  *         "patch"
  *     },
- *     normalizationContext={"groups"={"cheesing_listing:read"}},
- *     denormalizationContext={"groups"={"cheesing_listing:write"}},
  *     shortName="cheeses",
  *     attributes={
  *         "pagination_items_per_page"=1,
